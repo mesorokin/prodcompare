@@ -1,1 +1,1 @@
-# prodcompare
+# Product Comparison Service
