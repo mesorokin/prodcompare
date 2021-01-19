@@ -131,8 +131,8 @@ class ProductControllerTest {
         when(repository.findByNameIgnoreCaseAndCategoryIgnoreCase(eq("chocolate"), eq("desserts"), any(Pageable.class))).thenReturn(new PageImpl<>(List.of(product1)));
 
         this.mockMvc.perform(get("/search")
-                    .param("name","chocolate")
-                    .param("category","desserts"))
+                .param("name", "chocolate")
+                .param("category", "desserts"))
                 .andExpect(status().isOk())
                 .andExpect(content().json("{\"content\":[{\"id\":1,\"name\":\"Chocolate\",\"category\":\"Desserts\",\"seller\":\"Amazon\"}],\"pageable\":\"INSTANCE\",\"last\":true,\"totalPages\":1,\"totalElements\":1,\"size\":1,\"number\":0,\"sort\":{\"unsorted\":true,\"sorted\":false,\"empty\":true},\"numberOfElements\":1,\"first\":true,\"empty\":false}"));
     }

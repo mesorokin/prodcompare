@@ -36,7 +36,7 @@ public class BatchConfiguration {
                      FlatFileItemReader<Product> reader,
                      ProductItemProcessor processor) {
         return stepBuilderFactory.get("step")
-                .<Product, Product> chunk(10)
+                .<Product, Product>chunk(10)
                 .reader(reader)
                 .processor(processor)
                 .writer(writer)

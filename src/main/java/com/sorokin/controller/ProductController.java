@@ -13,12 +13,12 @@ public class ProductController {
 
     private final ProductRepository productRepository;
 
-    public ProductController(ProductRepository productRepository){
+    public ProductController(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
 
     @GetMapping("/products")
-    public ResponseEntity<Page<Product>> all(Pageable pageable){
+    public ResponseEntity<Page<Product>> all(Pageable pageable) {
         return ResponseEntity
                 .ok(this.productRepository.findAll(pageable));
     }
@@ -33,13 +33,13 @@ public class ProductController {
     @GetMapping("/search")
     public ResponseEntity<Page<Product>> findByNameAndCategory(@RequestParam String name,
                                                                @RequestParam String category,
-                                                               Pageable pageable){
+                                                               Pageable pageable) {
         return ResponseEntity
                 .ok(this.productRepository.findByNameIgnoreCaseAndCategoryIgnoreCase(name, category, pageable));
     }
 
     @PostMapping("/products")
-    ResponseEntity<Product> saveProduct(@RequestBody Product product){
+    ResponseEntity<Product> saveProduct(@RequestBody Product product) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(this.productRepository.save(product));
